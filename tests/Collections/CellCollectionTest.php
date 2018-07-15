@@ -7,6 +7,8 @@ class CellCollectionTest extends TestCase {
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->collection = new CellCollection([
             'one' => 'one',
             'two' => 'two'

@@ -378,6 +378,10 @@ class LaravelExcelReader
      */
     public function sheetsSelected()
     {
+        if(! $this->selectedSheets instanceof Countable) {
+            return false;
+        }
+        
         return count($this->selectedSheets) > 0;
     }
 

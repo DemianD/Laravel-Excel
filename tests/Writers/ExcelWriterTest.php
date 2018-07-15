@@ -205,7 +205,7 @@ class ExcelWriterTest extends TestCase {
     {
         Excel::create('test', function ($writer) {
             $writer->sheet('test', function ($sheet) {
-                $this->setExpectedException(PHPExcel_Exception::class);
+                $this->expectException(PHPExcel_Exception::class);
                 $sheet->createSheetFromArray('test data');
             });
         })->store('csv', __DIR__ . '/exports', true);
@@ -275,7 +275,7 @@ class ExcelWriterTest extends TestCase {
                 ]);
             });
         });
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $file->store('invalid file extension');
     }
 
@@ -290,7 +290,7 @@ class ExcelWriterTest extends TestCase {
                 ]);
             });
         });
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $file->download('invalid file extension');
     }
 
@@ -305,7 +305,7 @@ class ExcelWriterTest extends TestCase {
                 ]);
             });
         });
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $file->string('invalid file extension');
     }
 
