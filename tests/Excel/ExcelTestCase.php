@@ -19,7 +19,7 @@ class ExcelTestCase extends PHPUnit\Framework\TestCase {
     /**
      * Setup test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -103,7 +103,7 @@ class ExcelTestCase extends PHPUnit\Framework\TestCase {
      * Teardown
      * @return [type] [description]
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

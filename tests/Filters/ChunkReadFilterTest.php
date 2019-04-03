@@ -5,7 +5,7 @@ use Mockery as m;
 class ChunkReadFilterTest extends TestCase
 {
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->excel = app('excel');
@@ -42,21 +42,20 @@ class ChunkReadFilterTest extends TestCase
     {
         file_put_contents(__DIR__ . '/log.txt', '');
         file_put_contents(__DIR__ . '/rounds.txt', '');
-
         // test with small chunks
         $chunk_size      = 2;
         $expected        = "1,3,5,7,9,11,13,15,17,19,1,3,5,7,9,11,13,15,17,19";
         $expected_chunks = 10;
-
+        
         // Sheet2 has more rows than sheet 1
         $this->excel->filter('chunk')
-                    ->selectSheets('Sheet2')
-                    ->load(__DIR__ . "/files/multi.xls")
-                    ->chunk($chunk_size, function ($results) {
-                        foreach ($results as $row) {
-                            $output[] = (int)$row->header;
-                        }
-
+        ->selectSheets('Sheet2')
+        ->load(__DIR__ . "/files/multi.xls")
+        ->chunk($chunk_size, function ($results) {
+            foreach ($results as $row) {
+                $output[] = (int)$row->header;
+            }
+            
                         $previous = file_get_contents(__DIR__ . '/log.txt');
                         $previous = !empty($previous) ? $previous . ',' : $previous;
                         $rounds   = file_get_contents(__DIR__ . '/rounds.txt');
